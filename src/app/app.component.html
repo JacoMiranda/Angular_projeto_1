@@ -1,12 +1,34 @@
 <div class="container">
-  <div class="alert alert-primary" role="alert">
-    Adicionado <strong>{{nome}}</strong>!
+  <div class="alert alert-primary" role="alert" *ngIf="adicionado">
+    Adicionado <strong>{{ nome }}</strong
+    >!
   </div>
 
   <div class="form-group">
     <label>Nome</label>
-    <input class="form-control" type="text" />
+    <input
+      class="form-control"
+      type="text"
+      [(ngModel)]="nome"
+      (focus)="adicionado = false"
+    />
   </div>
 
-  <button class="btn btn-primary" type="button">Adicionar</button>
+  <button
+    class="btn btn-primary"
+    type="button"
+    (click)="adicionar()"
+    [disabled]="nome.length == 0" > Adicionar </button>
+
+  <div class="row">
+    <div class="col-2" *ngFor="let funcioario of funcionarios">
+      <div class="card">
+        <img
+          class="card-img-top"
+          src="https://randomuser.me/api/portraits/men/{{funcioario.id}}.jpg"
+        />
+        <div class="card-block">{{ funcioario.nome }}</div>
+      </div>
+    </div>
+  </div>
 </div>
